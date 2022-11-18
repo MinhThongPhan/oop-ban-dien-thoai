@@ -1,3 +1,0 @@
-# PROJECT QUẢN LÝ CỬA HÀNG BÁN ĐIỆN THOẠI
-
-

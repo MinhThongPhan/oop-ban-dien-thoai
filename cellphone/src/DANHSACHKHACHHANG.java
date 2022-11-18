@@ -1,3 +1,4 @@
+
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -9,6 +10,7 @@ import java.io.InputStreamReader;
 //import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -19,36 +21,44 @@ public class DANHSACHKHACHHANG {
     Scanner sc = new Scanner(System.in);
     kiemtra kt = new kiemtra();
 
+    public ArrayList<KHACHHANG> getArray() {
+        return arrkh;
+    }
+
     public void XuatDanhSachKH() {
-        if(arrkh != null) {
+        if (arrkh != null) {
             System.out.println("==============================================================================");
-            System.out.printf("%-20s%-25s%-15s%-20s\n","MA KHACH HANG","HO TEN","NAM SINH","SO DIEN THOAI");
+            System.out.printf("%-20s%-25s%-15s%-20s\n", "MA KHACH HANG", "HO TEN", "NAM SINH", "SO DIEN THOAI");
             System.out.println("==============================================================================");
             
-            for(KHACHHANG obj : arrkh) {
+            for (KHACHHANG obj : arrkh) {
                 System.out.println(obj.XuatKhachHang());
                 System.out.println("------------------------------------------------------------------------------");
-            }      
-        }
-        else {
-            System.out.println("Danh sach rong ,vui long nhap danh sach !");                
+            }
+        } else {
+            System.out.println("Danh sach rong ,vui long nhap danh sach !");
+
         }
     }
+
     public void ThemKhachHang() {
         KHACHHANG a = new KHACHHANG();
         a.NhapKhachHang();
         arrkh.add(a);
+
     }
+
     public KHACHHANG TimKiemKhachHangTheoMaKH(String makh) {
         KHACHHANG kh = null;
-        for(KHACHHANG obj : arrkh) {
-            if(obj.getMakh().equalsIgnoreCase(makh)) {
+        for (KHACHHANG obj : arrkh) {
+            if (obj.getMakh().equalsIgnoreCase(makh)) {
                 kh = obj;
                 break;
             }
         }
         return kh;
     }
+
     public void TimKiemKhachHang() {
         System.out.print("Nhap ma khach hang can tim: ");
         String makh = kt.KiemTraNhapMa();
@@ -56,35 +66,36 @@ public class DANHSACHKHACHHANG {
         kh = TimKiemKhachHangTheoMaKH(makh);
         if (kh != null)
             kh.XuatKhachHang_1();
-        else  
+        else
             System.out.println("Khong tim thay khach hang !");
     }
+
     public void XoaKhachHang() {
         System.out.print("Nhap ma khach hang can xoa: ");
         String makh = kt.KiemTraNhapMa();
         KHACHHANG nv = null;
         nv = TimKiemKhachHangTheoMaKH(makh);
-        if(nv != null) {
-            for(KHACHHANG obj : arrkh) {
-                if(obj == nv) {
+        if (nv != null) {
+            for (KHACHHANG obj : arrkh) {
+                if (obj == nv) {
                     arrkh.remove(obj);
                     System.out.println("Xoa thanh cong khach hang!");
                     break;
                 }
             }
-        }
-        else
+        } else
             System.out.println("Khong tim thay khach hang !");
-    } 
+    }
+
     public void SuaKhachHang() {
         System.out.print("Nhap ma khach hang can sua: ");
         String manv = sc.nextLine();
         KHACHHANG nv = null;
         nv = TimKiemKhachHangTheoMaKH(manv);
-        if(nv != null) {
-            for(KHACHHANG obj : arrkh) {
-                if(obj == nv) { 
-                    while(true) {
+        if (nv != null) {
+            for (KHACHHANG obj : arrkh) {
+                if (obj == nv) {
+                    while (true) {
                         System.out.println("\n");
                         System.out.println("--------------------------------");
                         System.out.println("======    SUA THONG TIN   ======");
@@ -94,11 +105,13 @@ public class DANHSACHKHACHHANG {
                         System.out.println("3. Sua nam sinh");
                         System.out.println("4. Sua so dien thoai");
                         System.out.println("5. Thoat");
-                        System.out.println("--------------------------------");;
+                        System.out.println("--------------------------------");
+                        ;
                         System.out.print("Chon: ");
                         String key = sc.nextLine();
-                        if(Integer.parseInt(key) <1 || Integer.parseInt(key) > 5)
+                        if (Integer.parseInt(key) < 1 || Integer.parseInt(key) > 5)
                             System.out.println("Vui long chon so tu 1 den 5 !");
+
                         else {
                             switch (key) {
                                 case "1":
@@ -125,18 +138,20 @@ public class DANHSACHKHACHHANG {
                                     break;
                             }
                         }
-                        if(Integer.parseInt(key) == 5) break;
+                        if (Integer.parseInt(key) == 5)
+                            break;
+
                     }
                 }
-            } 
-        }
-        else
+            }
+        } else
             System.out.println("Khong tim thay khach hang !");
     }
 
-    public void MenuDanhSachKhachHang(DANHSACHKHACHHANG list) throws IOException{
+    public void MenuDanhSachKhachHang(DANHSACHKHACHHANG list) throws IOException {
         docfile();
-        while(true) {
+        while (true) {
+
             System.out.println("\n");
             System.out.println("------------------------------------");
             System.out.println("==========    * MENU *    ==========");
@@ -145,60 +160,57 @@ public class DANHSACHKHACHHANG {
             System.out.println("2. Xoa khach hang");
             System.out.println("3. Tim kiem khach hang");
             System.out.println("4. Sua thong tin khach hang");
-             System.out.println("5. Xuat danh sach khach hang");
-             System.out.println("6. Thoat");
+            System.out.println("5. Xuat danh sach khach hang");
+            System.out.println("6. Thoat");
             System.out.println("------------------------------------");
             System.out.print("Chon: ");
             String key = sc.nextLine();
-            if(Integer.parseInt(key) <1 || Integer.parseInt(key) > 6)
+
+            if (Integer.parseInt(key) < 1 || Integer.parseInt(key) > 6)
                 System.out.println("Vui long chon so tu 1 den 6 !");
             else {
                 switch (key) {
-                case "1":
-                    list.ThemKhachHang();
-                   break;
-                case "2":
-                   list.XoaKhachHang();
-                   break;
-                case "3":
-                   list.TimKiemKhachHang();
-                   break;
-                case "4":
-                   list.SuaKhachHang();
-                   break;
-                case "5":
-                    list.XuatDanhSachKH();
-                    break;
+                    case "1":
+                        list.ThemKhachHang();
+                        break;
+                    case "2":
+                        list.XoaKhachHang();
+                        break;
+                    case "3":
+                        list.TimKiemKhachHang();
+                        break;
+                    case "4":
+                        list.SuaKhachHang();
+                        break;
+                    case "5":
+                        list.XuatDanhSachKH();
+                        break;
                 }
             }
-            if(Integer.parseInt(key) == 6) {
+            if (Integer.parseInt(key) == 6) {
                 ghiFile();
                 break;
             }
         }
     }
-    
+
     public void ghiFile() {
         FileOutputStream f = null;
         try {
-            f = new FileOutputStream("danhsachkhachhang.txt",false);
-            for(KHACHHANG obj : arrkh) {
+            f = new FileOutputStream("danhsachkhachhang.txt", false);
+            for (KHACHHANG obj : arrkh) {
                 String line = obj.getFileLine();
                 byte[] b = line.getBytes("utf8");
                 f.write(b);
             }
-        } 
-        catch (FileNotFoundException ex) {
+        } catch (FileNotFoundException ex) {
             Logger.getLogger(DANHSACHKHACHHANG.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        catch (UnsupportedEncodingException ex) {
+        } catch (UnsupportedEncodingException ex) {
             Logger.getLogger(DANHSACHKHACHHANG.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        catch (IOException ex) {
+        } catch (IOException ex) {
             Logger.getLogger(DANHSACHKHACHHANG.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        finally {
-            if(f != null) {
+        } finally {
+            if (f != null) {
                 try {
                     f.close();
                 } catch (Exception ex) {
@@ -208,54 +220,51 @@ public class DANHSACHKHACHHANG {
         }
     }
 
-    public void docfile() throws IOException{   
+    public void docfile() throws IOException {
         FileInputStream f = null;
         InputStreamReader reader = null;
         BufferedReader bufferedReader = null;
         try {
             f = new FileInputStream("danhsachkhachhang.txt");
-            reader = new InputStreamReader(f,StandardCharsets.UTF_8);
+            reader = new InputStreamReader(f, StandardCharsets.UTF_8);
             bufferedReader = new BufferedReader(reader);
             String line = null;
             while ((line = bufferedReader.readLine()) != null) {
-                if(line.isEmpty()) 
+                if (line.isEmpty())
                     continue;
                 KHACHHANG kh = new KHACHHANG();
                 kh.parseKhachHang(line);
                 arrkh.add(kh);
             }
-        }
-        catch(FileNotFoundException ex) {
+        } catch (FileNotFoundException ex) {
             Logger.getLogger(DANHSACHNHANVIEN.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        finally {
-            if(f != null) {
+        } finally {
+            if (f != null) {
                 try {
-                     f.close();
+                    f.close();
                 } catch (IOException ex) {
                     Logger.getLogger(DANHSACHNHANVIEN.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-            if(reader != null) {
+            if (reader != null) {
                 try {
-                   reader.close();
-               } catch (IOException ex) {
-                   Logger.getLogger(DANHSACHNHANVIEN.class.getName()).log(Level.SEVERE, null, ex);
-               }
+                    reader.close();
+                } catch (IOException ex) {
+                    Logger.getLogger(DANHSACHNHANVIEN.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
-            if(bufferedReader != null) {
+            if (bufferedReader != null) {
                 try {
                     bufferedReader.close();
-               } catch (IOException ex) {
-                   Logger.getLogger(DANHSACHNHANVIEN.class.getName()).log(Level.SEVERE, null, ex);
-               }
+                } catch (IOException ex) {
+                    Logger.getLogger(DANHSACHNHANVIEN.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
     }
 
-    
     public static void main(String[] args) throws IOException {
         DANHSACHKHACHHANG list = new DANHSACHKHACHHANG();
         list.MenuDanhSachKhachHang(list);
-    }
+    }   
 }
